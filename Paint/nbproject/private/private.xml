@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/paint/Calque.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>91</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/Paint.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/Image.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/Interface_.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/SupprimerCouleur.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/AjouterCouleur.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/SupprimerCalque.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/Save.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/Général.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/Couleur.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/MaFenetre.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/AjouterCalqueRenvoyer.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/Outils.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/NouvelleImage.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/vu/VueCalque.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/boiteDialogue/AjouterCalque.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/JComboBocColor.java</file>
+            <file>file:/C:/Users/Maxen/MegaSync/My%20Projet/Paint_3.0/Paint/src/paint/Calque.java</file>
+        </group>
+    </open-files>
+</project-private>
