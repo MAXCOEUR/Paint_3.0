@@ -54,6 +54,8 @@ public class Interface_ extends JPanel {
         return Couleur.listeJButton;
     }
     
+    
+    
     public void actualiseInterface() throws FileNotFoundException{
         GridBagConstraints gc = new GridBagConstraints();
         Couleur.mettreButton();
@@ -70,14 +72,11 @@ public class Interface_ extends JPanel {
         gc.gridx=0;
         gc.gridy=2;
         this.add(vueCalque,gc);
-        
+        vueCalque.affichage();
         
         
     }
     
-    public void vueCalqueaffichage(){
-        vueCalque.affichage();
-    }
     
     
     

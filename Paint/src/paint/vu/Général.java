@@ -39,7 +39,7 @@ public class Général extends JPanel {
     
     public void actualiserGeneral() throws FileNotFoundException{
         interface_.actualiseInterface();
-        interface_.vueCalqueaffichage();
+        //interface_.vueCalqueaffichage();
     }
     
     

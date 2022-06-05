@@ -200,7 +200,6 @@ public class Image extends JComponent implements MouseListener,MouseMotionListen
     private void ModePinceau(int x, int y,Color c){
         for (int i = -taillePinceau/2; i < Math.ceil(taillePinceau/2.0); i++) {
             for (int j = -taillePinceau/2; j < Math.ceil(taillePinceau/2.0); j++) {
-                System.out.println(c);
                 this.setpixel(calqueChoisie, c, y+i, x+j);
             }
             
@@ -259,7 +258,7 @@ public class Image extends JComponent implements MouseListener,MouseMotionListen
     }
     
     private Color inversColor(Color c){
-        return new Color((int)Math.abs(c.getRed()-255), (int)Math.abs(c.getGreen()-255), (int)Math.abs(c.getBlue()-255), c.getAlpha());
+        return new Color((int)Math.abs(c.getRed()-255), (int)Math.abs(c.getGreen()-255), (int)Math.abs(c.getBlue()-255), 255);
     }
     
     private void ModeRectangle(int x, int y){
@@ -340,14 +339,6 @@ public class Image extends JComponent implements MouseListener,MouseMotionListen
             t=FIFO.get(0);
             FIFO.remove(0);
             
-//            System.out.println(calque.get(calqueChoisie).getPixel().get(t.y-1).get(t.x));
-//            System.out.println(calque.get(calqueChoisie).getPixel().get(t.y).get(t.x-1));
-//            System.out.println(calque.get(calqueChoisie).getPixel().get(t.y+1).get(t.x));
-//            System.out.println(calque.get(calqueChoisie).getPixel().get(t.y).get(t.x+1));
-            
-//            if (t.y-1>=0 && couleurRemplacer.equals(calque.get(calqueChoisie).getPixel().get(t.y-1).get(t.x))&& dejaPasser[t.y-1][t.x]==false) {
-//                System.out.println("meme couleur");
-//            }
             
             if (t.y-1>=0&& couleurRemplacer.equals(calque.get(calqueChoisie).getPixel().get(t.y-1).get(t.x)) && dejaPasser[t.y-1][t.x]==false ) {
                 FIFO.add(new Point(t.x, t.y-1));

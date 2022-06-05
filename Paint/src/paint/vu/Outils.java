@@ -54,7 +54,7 @@ public class Outils extends JPanel implements ActionListener{
             b.setRolloverEnabled(false);
             b.setPreferredSize(new Dimension(50,50));
         }
-        
+        ListeOutil.get(0).setBorderPainted(true);
         
         this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
@@ -96,15 +96,17 @@ public class Outils extends JPanel implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < ListeOutil.size(); i++) {
+        if (e.getSource()==ListeOutil) {
+            for (int i = 0; i < ListeOutil.size(); i++) {
             ListeOutil.get(i).setBorderPainted(false);
             if (e.getSource()==ListeOutil.get(i)) {
                 System.out.println(i);
                 Image.ModeChoisie=i;
                 ListeOutil.get(i).setBorderPainted(true);
-            }
+                
+                }
+            }   
         }
-        
         if (e.getSource()==moinPinceau) {
             if (Image.taillePinceau-1>0) {
                 Image.taillePinceau-=1;

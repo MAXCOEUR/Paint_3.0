@@ -32,24 +32,28 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import paint.boiteDialogue.AjouterCalque;
 import paint.boiteDialogue.AjouterCouleur;
 import paint.boiteDialogue.NouvelleImage;
 import paint.boiteDialogue.Save;
 import paint.boiteDialogue.SupprimerCouleur;
+import paint.boiteDialogue.SupprimerImage;
 
 /**
  *
  * @author Maxen
  */
-public class MaFenetre extends JFrame implements ActionListener{
+public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
     
     private JMenuBar menuBar =new JMenuBar();
     
     
     private JMenu menuFichier = new JMenu("Fichier");
     private JMenuItem menuItemExporter = new JMenuItem("Exporter : svg");
-    private JMenuItem menuItemNouveauFichier = new JMenuItem("Nouveau Fichier");
+    private JMenuItem menuItemNouveauImage = new JMenuItem("Nouvelle image");
+    private JMenuItem menuItemSupprimerImage = new JMenuItem("Supprimer une image");
     
     private JMenu menuCalque = new JMenu("Calque");
     private JMenuItem menuItemAjouterCalque = new JMenuItem("Ajouter");
@@ -61,6 +65,7 @@ public class MaFenetre extends JFrame implements ActionListener{
     
     
     public static Dimension tailleFenetre;
+    public static int imageSéléctionne=0;
     
     JTabbedPane tp=new JTabbedPane();
     
@@ -87,7 +92,8 @@ public class MaFenetre extends JFrame implements ActionListener{
         this.setJMenuBar(menuBar);
             menuBar.add(menuFichier);
                 menuFichier.add(menuItemExporter);
-                menuFichier.add(menuItemNouveauFichier);
+                menuFichier.add(menuItemNouveauImage);
+                menuFichier.add(menuItemSupprimerImage);
             menuBar.add(menuCalque);
                 menuCalque.add(menuItemAjouterCalque);
                 menuCalque.add(menuItemSupprimerCalque);
@@ -125,14 +131,17 @@ public class MaFenetre extends JFrame implements ActionListener{
         
         
         
-        
+        tp.addChangeListener(this);
         menuItemExporter.addActionListener(this);
         menuItemAjouterCalque.addActionListener(this);
         menuItemSupprimerCalque.addActionListener(this);
         menuItemAjouterCouleur.addActionListener(this);
         menuItemSupprimerCouleur.addActionListener(this);
-        menuItemNouveauFichier.addActionListener(this);
+        menuItemNouveauImage.addActionListener(this);
+        menuItemSupprimerImage.addActionListener(this);
     }
+    
+    
     
     public void ajoutImage() throws FileNotFoundException{
         NouvelleImage nImage= new NouvelleImage(this);
@@ -144,14 +153,20 @@ public class MaFenetre extends JFrame implements ActionListener{
         }
     }
     
+    public void suppImage(int i) throws FileNotFoundException{
+        Général.remove(i);
+        actualiserFenetre();
+    }
+    
     public void actualiserFenetre() throws FileNotFoundException{
         Fenetre = new JPanel();
-        tabbedPane = new JTabbedPane();
+        tp.removeAll();
+        
         
         for (int i = 0; i < Général.size(); i++) {
             Général.get(i).actualiserGeneral();
-            Général.get(i).setName(i+"");
-            tp.add(i+"",Général.get(i));
+            Général.get(i).setName(Général.get(i).image.getName());
+            tp.add(Général.get(i).image.getName(),Général.get(i));
         }
         
         Fenetre.add(tp);
@@ -161,6 +176,16 @@ public class MaFenetre extends JFrame implements ActionListener{
         
         this.setContentPane(Fenetre);
         //this.setContentPane(Général);
+    }
+    
+    public void actualiserInterface(){
+        for (int i = 0; i < Général.size(); i++) {
+            try {
+                Général.get(i).interface_.actualiseInterface();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MaFenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     
@@ -256,11 +281,7 @@ public class MaFenetre extends JFrame implements ActionListener{
             if (tmp!=null) {
                 Général.get(tmp.ChoixCalque).image.addCalque(tmp.Name);                                        // a changer le zero pour ajoutezr le calque ou bon endroit
                 
-                try {
-                    actualiserFenetre();
-                } catch (FileNotFoundException ex) {
-                    
-                }
+                actualiserInterface();
             }
             
         }
@@ -269,11 +290,7 @@ public class MaFenetre extends JFrame implements ActionListener{
             AjouterCalqueRenvoyer tmp = supp.showDialog();
             Général.get(Integer.parseInt(tmp.Name)).image.delCalque(tmp.ChoixCalque);
             
-            try {
-                actualiserFenetre();
-            } catch (FileNotFoundException ex) {
-                
-            }
+            actualiserInterface();
         }
         if (e.getSource()==menuItemAjouterCouleur) {
             AjouterCouleur aj= new AjouterCouleur(this);
@@ -281,30 +298,37 @@ public class MaFenetre extends JFrame implements ActionListener{
             if (tmp!=null) {
                 
                 addCouleur(tmp);
-                try {
-                    actualiserFenetre();
-                } catch (FileNotFoundException ex) {
-                    
-                }
+                actualiserInterface();
             }
 
         }
         if (e.getSource()==menuItemSupprimerCouleur) {
             SupprimerCouleur supp =new SupprimerCouleur(this);
             suppCouleur(supp.showDialog());
-            try {
-                actualiserFenetre();
-            } catch (FileNotFoundException ex) {
-                
-            }
+            actualiserInterface();
         }
-        if (e.getSource()==menuItemNouveauFichier) {
+        if (e.getSource()==menuItemNouveauImage) {
             try {
                 ajoutImage();
             } catch (FileNotFoundException ex) {
                 
             }
         }
+        if (e.getSource()==menuItemSupprimerImage) {
+            SupprimerImage supp = new SupprimerImage(this);
+            try {
+                suppImage(supp.showDialog());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MaFenetre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        imageSéléctionne=tp.getSelectedIndex();
     }
     
 }
