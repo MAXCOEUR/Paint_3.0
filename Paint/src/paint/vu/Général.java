@@ -19,7 +19,7 @@ public class Général extends JPanel {
 
     public Général(int H, int L) throws FileNotFoundException {
         this.image = new Image(H, L);
-        this.interface_ = new Interface_(image);
+        this.interface_ = new Interface_(image.im);
         this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
@@ -32,8 +32,7 @@ public class Général extends JPanel {
         gc.gridx=1;
         gc.gridy=0;
         this.add(interface_,gc);
-        image.addMouseListener(image);
-        image.addMouseMotionListener(image);
+        
     }
     
     

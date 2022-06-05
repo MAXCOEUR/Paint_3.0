@@ -23,6 +23,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 import paint.Calque;
+import paint.vu.Image.ImageComp;
 
 /**
  *
@@ -30,7 +31,7 @@ import paint.Calque;
  */
 public class VueCalque extends JApplet implements ActionListener {
     private ArrayList<Calque> calque;
-    private Image im;
+    private ImageComp im;
     public JPanel pano= new JPanel();
     
     private ArrayList<JButton> BoutonUp = new ArrayList<>();
@@ -52,7 +53,7 @@ public class VueCalque extends JApplet implements ActionListener {
     ImageIcon CaseVide = new ImageIcon(new ImageIcon("donnee\\image\\case-vide.png").getImage().getScaledInstance(15, 15, 20));
     ImageIcon CaseCocher = new ImageIcon(new ImageIcon("donnee\\image\\case-cocher.png").getImage().getScaledInstance(15, 15, 20));
     
-    public VueCalque(Image i) {
+    public VueCalque(ImageComp i) {
         calque=i.getCalque();
         im=i;        
         scroll = new JScrollPane(pano);

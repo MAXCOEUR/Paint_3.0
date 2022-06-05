@@ -19,7 +19,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import paint.Calque;
-import paint.JComboBocColor;
 import paint.vu.Image;
 import paint.vu.MaFenetre;
 import static paint.vu.MaFenetre.tailleFenetre;

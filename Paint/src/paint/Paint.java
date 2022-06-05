@@ -21,6 +21,7 @@ public class Paint {
         
         
         MaFenetre fen=new MaFenetre();
+        fen.setLocation(0, 0);
         fen.setVisible(true);
     }
     

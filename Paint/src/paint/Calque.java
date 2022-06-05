@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Vector;
 import paint.vu.Image;
+import paint.vu.Image.ImageComp;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Calque {
      * @param hauteur hauteur
      * @param largeur largeur
      */
-    public Calque(int hauteur,int largeur,String n,Image im) {
+    public Calque(int hauteur,int largeur,String n,ImageComp im) {
         pixel= new ArrayList();
         for (int i = 0; i < hauteur; i++) {
             pixel.add(new ArrayList() );

@@ -49,10 +49,10 @@ public class AjouterCalque extends JDialog implements ActionListener{
         
         String[] petStrings = new String[tmp.size()];
         for (int i = 0; i < petStrings.length; i++) {
-            petStrings[i]=tmp.get(i).getName();
+            petStrings[i]=tmp.get(i).image.im.getName();
         }
         Image = new JComboBox(petStrings);
-        
+        Image.setSelectedIndex(MaFenetre.imageSéléctionne);
         
         
         this.setTitle("Ajouter Calque");

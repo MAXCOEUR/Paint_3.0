@@ -45,7 +45,7 @@ public class SupprimerImage extends JDialog implements ActionListener{
         
         String[] petStrings = new String[GénéralListe.size()];
         for (int i = 0; i < petStrings.length; i++) {
-            petStrings[i]=GénéralListe.get(i).getName();
+            petStrings[i]=GénéralListe.get(i).image.im.getName();
         }
         JComboboxImage = new JComboBox(petStrings);
         JComboboxImage.setSelectedIndex(MaFenetre.imageSéléctionne);

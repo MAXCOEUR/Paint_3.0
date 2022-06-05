@@ -166,7 +166,7 @@ public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
         for (int i = 0; i < Général.size(); i++) {
             Général.get(i).actualiserGeneral();
             Général.get(i).setName(Général.get(i).image.getName());
-            tp.add(Général.get(i).image.getName(),Général.get(i));
+            tp.add(Général.get(i).image.im.getName(),Général.get(i));
         }
         
         Fenetre.add(tp);
@@ -262,7 +262,7 @@ public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
             Save ajout = new Save(this);
             AjouterCalqueRenvoyer tmp = ajout.showDialog();
             if (tmp!=null) {
-                Général.get(tmp.ChoixCalque).image.saveImage("save\\"+tmp.Name);                               // a changer le zero pour quelle save a faire
+                Général.get(tmp.ChoixCalque).image.im.saveImage("save\\"+tmp.Name);                               // a changer le zero pour quelle save a faire
             
                 File fils =new File("save");
                 try {
@@ -279,7 +279,7 @@ public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
             AjouterCalque ajout = new AjouterCalque(this);
             AjouterCalqueRenvoyer tmp = ajout.showDialog();
             if (tmp!=null) {
-                Général.get(tmp.ChoixCalque).image.addCalque(tmp.Name);                                        // a changer le zero pour ajoutezr le calque ou bon endroit
+                Général.get(tmp.ChoixCalque).image.im.addCalque(tmp.Name);                                        // a changer le zero pour ajoutezr le calque ou bon endroit
                 
                 actualiserInterface();
             }
@@ -288,7 +288,7 @@ public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
         if (e.getSource()==menuItemSupprimerCalque) {
             SupprimerCalque supp =new SupprimerCalque(this);
             AjouterCalqueRenvoyer tmp = supp.showDialog();
-            Général.get(Integer.parseInt(tmp.Name)).image.delCalque(tmp.ChoixCalque);
+            Général.get(Integer.parseInt(tmp.Name)).image.im.delCalque(tmp.ChoixCalque);
             
             actualiserInterface();
         }

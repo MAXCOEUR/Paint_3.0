@@ -22,6 +22,7 @@ import paint.Calque;
 import paint.vu.AjouterCalqueRenvoyer;
 import paint.vu.Général;
 import paint.vu.Image;
+import paint.vu.Image.ImageComp;
 import paint.vu.MaFenetre;
 
 /**
@@ -56,12 +57,18 @@ public class SupprimerCalque extends JDialog implements ActionListener{
         
         String[] petStrings = new String[GénéralListe.size()];
         for (int i = 0; i < petStrings.length; i++) {
-            petStrings[i]=GénéralListe.get(i).getName();
+            petStrings[i]=GénéralListe.get(i).image.im.getName();
         }
         JComboboxImage = new JComboBox(petStrings);
         JComboboxImage.setSelectedIndex(MaFenetre.imageSéléctionne);
         
-        Image im=fen.getGénéral().get(JComboboxImage.getSelectedIndex()).image;
+        ImageComp im;
+        if (JComboboxImage.getSelectedIndex()!=-1) {
+            im=fen.getGénéral().get(JComboboxImage.getSelectedIndex()).image.im;
+        }
+        else{
+            im=fen.getGénéral().get(0).image.im;
+        }
         
         ArrayList<Calque> tmp =im.getCalque();
         
@@ -148,7 +155,7 @@ public class SupprimerCalque extends JDialog implements ActionListener{
             
             Image im=fen.getGénéral().get(JComboboxImage.getSelectedIndex()).image;
         
-            ArrayList<Calque> tmp =im.getCalque();
+            ArrayList<Calque> tmp =im.im.getCalque();
 
             String[] petStrings2 = new String[tmp.size()];
             for (int i = 0; i < petStrings2.length; i++) {

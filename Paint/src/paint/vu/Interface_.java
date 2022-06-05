@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import paint.vu.Image.ImageComp;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Interface_ extends JPanel {
     
     
 
-    public Interface_(Image im) throws FileNotFoundException {
+    public Interface_(ImageComp im) throws FileNotFoundException {
         this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
         this.setLayout(new GridBagLayout());
         
@@ -43,7 +44,7 @@ public class Interface_ extends JPanel {
         
         Couleur=new Couleur();  
         
-        vueOutils= new Outils();
+        vueOutils= new Outils(im);
         
         actualiseInterface();
     }

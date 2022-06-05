@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import paint.vu.Image.ImageComp;
 
 /**
  *
@@ -25,6 +26,11 @@ import javax.swing.border.LineBorder;
 public class Outils extends JPanel implements ActionListener{
     
     ArrayList<JButton> ListeOutil= new ArrayList<>();
+    
+    JLabel taillePixel = new JLabel("Taille des pixels :");
+    JLabel vuTaillePixel = new JLabel(Image.taillePixel+"");
+    JButton moinPixel = new JButton("-");
+    JButton plusPixel = new JButton("+");
     
     JLabel taillePinceau = new JLabel("Taille du Pinceau :");
     JLabel vuTaillePinceau = new JLabel(Image.taillePinceau+"");
@@ -38,9 +44,11 @@ public class Outils extends JPanel implements ActionListener{
     ImageIcon rect = new ImageIcon(new ImageIcon("donnee\\image\\rect.png").getImage().getScaledInstance(15, 15, 20));
     ImageIcon Ver = new ImageIcon(new ImageIcon("donnee\\image\\Ver.png").getImage().getScaledInstance(15, 15, 20));
     
+    ImageComp im;
     
-    public Outils() {
-        
+    
+    public Outils(ImageComp im) {
+        this.im=im;
         ListeOutil.add(new JButton(pinceau));
         ListeOutil.add(new JButton(Ver));
         ListeOutil.add(new JButton(Horizo));
@@ -61,9 +69,22 @@ public class Outils extends JPanel implements ActionListener{
         gc.gridx=0;
         gc.gridy=0;
         gc.gridwidth=2;
-        this.add(taillePinceau,gc);
+        this.add(taillePixel,gc);
         gc.gridx=2;
         gc.gridy=0;
+        gc.gridwidth=1;
+        this.add(moinPixel,gc);
+        gc.gridx=3;
+        this.add(vuTaillePixel,gc);
+        gc.gridx=4;
+        this.add(plusPixel,gc);
+        
+        gc.gridx=0;
+        gc.gridy=1;
+        gc.gridwidth=2;
+        this.add(taillePinceau,gc);
+        gc.gridx=2;
+        gc.gridy=1;
         gc.gridwidth=1;
         this.add(moinPinceau,gc);
         gc.gridx=3;
@@ -74,7 +95,7 @@ public class Outils extends JPanel implements ActionListener{
         gc.fill=GridBagConstraints.BOTH;
         for (int i = 0; i < ListeOutil.size(); i++) {
             gc.gridx=i;
-            gc.gridy=1;
+            gc.gridy=2;
             this.add(ListeOutil.get(i),gc);
         }
         
@@ -88,6 +109,8 @@ public class Outils extends JPanel implements ActionListener{
                 
         moinPinceau.addActionListener(this);
         plusPinceau.addActionListener(this);
+        moinPixel.addActionListener(this);
+        plusPixel.addActionListener(this);
     }
     
     
@@ -123,6 +146,19 @@ public class Outils extends JPanel implements ActionListener{
         if (e.getSource()==plusPinceau) {
             Image.taillePinceau+=1;
             vuTaillePinceau.setText(Image.taillePinceau+"");
+        }
+        
+        if (e.getSource()==moinPixel) {
+            if (Image.taillePixel-1>0) {
+                Image.taillePixel-=1;
+                vuTaillePixel.setText(Image.taillePixel+"");
+                im.repaint();
+            }
+        }
+        if (e.getSource()==plusPixel) {
+            Image.taillePixel+=1;
+            vuTaillePixel.setText(Image.taillePixel+"");
+            im.repaint();
         }
     }
     
