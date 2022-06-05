@@ -31,6 +31,8 @@ public class Interface_ extends JPanel {
     VueCalque vueCalque;
     Outils vueOutils;
     
+   
+    
     
 
     public Interface_(Image im) throws FileNotFoundException {

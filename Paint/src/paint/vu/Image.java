@@ -32,9 +32,10 @@ public class Image extends JComponent implements MouseListener,MouseMotionListen
     
     private int calqueChoisie=0;
     public static int ModeChoisie=0;
+    public static int couleurChoisie=0;
     public static int taillePinceau=1;
     
-    public static Color pinceau=new Color(0,0,0);
+    public static Color pinceau;
     
     public static int nbrImage=0;
     public int nbrCalque=0;

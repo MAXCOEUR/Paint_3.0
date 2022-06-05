@@ -38,6 +38,7 @@ public class Outils extends JPanel implements ActionListener{
     ImageIcon rect = new ImageIcon(new ImageIcon("donnee\\image\\rect.png").getImage().getScaledInstance(15, 15, 20));
     ImageIcon Ver = new ImageIcon(new ImageIcon("donnee\\image\\Ver.png").getImage().getScaledInstance(15, 15, 20));
     
+    
     public Outils() {
         
         ListeOutil.add(new JButton(pinceau));
@@ -54,7 +55,6 @@ public class Outils extends JPanel implements ActionListener{
             b.setRolloverEnabled(false);
             b.setPreferredSize(new Dimension(50,50));
         }
-        ListeOutil.get(0).setBorderPainted(true);
         
         this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
@@ -83,11 +83,22 @@ public class Outils extends JPanel implements ActionListener{
             b.setBackground(Color.WHITE);
             b.addActionListener(this);
         }
+        
+        actualiserChoisie();
+                
         moinPinceau.addActionListener(this);
         plusPinceau.addActionListener(this);
     }
     
     
+    public void actualiserChoisie(){
+        for (int i = 0; i < ListeOutil.size(); i++) {
+            ListeOutil.get(i).setBorderPainted(false);
+            if (i==Image.ModeChoisie) {
+                ListeOutil.get(i).setBorderPainted(true);
+            }
+        }
+    }
     
     
     @Override
@@ -96,17 +107,13 @@ public class Outils extends JPanel implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==ListeOutil) {
             for (int i = 0; i < ListeOutil.size(); i++) {
-            ListeOutil.get(i).setBorderPainted(false);
+            
             if (e.getSource()==ListeOutil.get(i)) {
-                System.out.println(i);
                 Image.ModeChoisie=i;
-                ListeOutil.get(i).setBorderPainted(true);
-                
                 }
             }   
-        }
+            actualiserChoisie();
         if (e.getSource()==moinPinceau) {
             if (Image.taillePinceau-1>0) {
                 Image.taillePinceau-=1;

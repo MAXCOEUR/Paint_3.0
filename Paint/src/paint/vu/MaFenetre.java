@@ -328,7 +328,15 @@ public class MaFenetre extends JFrame implements ActionListener,ChangeListener{
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        imageSéléctionne=tp.getSelectedIndex();
+        if (tp.getSelectedIndex()!=-1) {
+            Général.get(tp.getSelectedIndex()).interface_.vueOutils.vuTaillePinceau.setText(Image.taillePinceau+"");
+            imageSéléctionne=tp.getSelectedIndex();
+            for (int i = 0; i < Général.size(); i++) {
+                    Général.get(i).interface_.vueOutils.actualiserChoisie();
+                    Général.get(i).interface_.Couleur.actualiserChoisie();
+                }
+        }
+        
     }
     
 }

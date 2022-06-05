@@ -37,6 +37,7 @@ public class Couleur extends JApplet implements ActionListener{
         scroll = new JScrollPane(pano);
         
         mettreButton();
+        actualiserChoisie();
         
         this.add(scroll);
     }
@@ -97,6 +98,10 @@ public class Couleur extends JApplet implements ActionListener{
         for (JButton L : listeJButton){
             L.addActionListener(this);
         }
+        
+        Image.pinceau=listeColorJButton.get(0);
+        listeJButton.get(0).setBorderPainted(true);
+        
         pano.updateUI();
         
     }
@@ -105,6 +110,15 @@ public class Couleur extends JApplet implements ActionListener{
        return new Color(Math.abs(c.getRed()-255),Math.abs(c.getGreen()-255),Math.abs(c.getBlue()-255));
     }
     
+    public void actualiserChoisie(){
+        for (int i = 0; i < listeJButton.size(); i++) {
+            listeJButton.get(i).setBorderPainted(false);
+            if (i==Image.couleurChoisie) {
+                System.out.println(i);
+                listeJButton.get(i).setBorderPainted(true);
+            }
+        }
+    }
     
     @Override
     public Dimension getPreferredSize() {
@@ -114,12 +128,12 @@ public class Couleur extends JApplet implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < listeJButton.size(); i++) {
-            listeJButton.get(i).setBorderPainted(false);
             if (e.getSource()==listeJButton.get(i)) {
                 Image.pinceau=listeColorJButton.get(i);
-                listeJButton.get(i).setBorderPainted(true);
+                Image.couleurChoisie=i;
             }
         }
+        actualiserChoisie();
     }
     
 }
